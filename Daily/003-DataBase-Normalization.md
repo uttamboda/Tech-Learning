@@ -133,7 +133,6 @@ Primary Key: (StudentID, CourseID)
 | D1     | HR       | Delhi        |
 | D2     | IT       | Mumbai       |
 
----
 
 **Result:**
 * Transitive dependency is removed.
@@ -142,5 +141,120 @@ Primary Key: (StudentID, CourseID)
 ---
 
 
+## Boyce–Codd Normal Form (BCNF)
+**Points:**
+* Table must be in 3NF.
+* For every functional dependency (X → Y), X must be a superkey.
+
+**Example (Table NOT in BCNF):**
+
+| EmpID | Dept | Manager |
+|------|------|---------|
+| 1    | IT   | Rahul   |
+| 2    | IT   | Rahul   |
+| 3    | HR   | Neha    |
+
+**Functional Dependencies:**
+* EmpID → Dept, Manager
+* Dept → Manager
+
+**Problem:**
+* Dept determines Manager.
+* Dept is not a superkey.
+* This violates BCNF.
+
+### Solution (Convert to BCNF)
+
+**Department Table**
+
+| Dept | Manager |
+|------|---------|
+
+**Employee Table**
+
+| EmpID | Dept |
+|------|------|
+
+**Result:**
+* Every determinant is now a superkey.
+* The table is in BCNF.
+
+----
+
+## Fourth Normal Form (4NF)
+**Points:**
+* Table must be in BCNF.
+* No multi-valued dependency is allowed.
+
+**Example (Table NOT in 4NF):**
+
+| Student | Skill  | Hobby  |
+|---------|--------|--------|
+| Rahul   | Java   | Music  |
+| Rahul   | Python | Music  |
+| Rahul   | Java   | Sports |
+
+**Problem:**
+* A student can have multiple skills and multiple hobbies.
+* Skills and hobbies are independent of each other.
+* This causes redundancy.
 
 
+### Solution (Convert to 4NF)
+
+**Student_Skill Table**
+
+| Student | Skill  |
+|---------|--------|
+| Rahul   | Java   |
+| Rahul   | Python |
+
+**Student_Hobby Table**
+
+| Student | Hobby  |
+|---------|--------|
+| Rahul   | Music  |
+| Rahul   | Sports |
+
+**Result:**
+* Multi-valued dependency is removed.
+* The table is in 4NF.
+
+---
+
+## Fifth Normal Form (5NF)
+**Points:**
+* Table must be in 4NF.
+* No join dependency should exist except those implied by candidate keys.
+
+**Example (Conceptual):**
+
+| Supplier | Product | Project |
+|----------|---------|---------|
+
+**Problem:**
+* Data can be reconstructed only by joining multiple tables.
+* Redundancy appears due to complex join dependencies.
+
+
+
+### Solution (Convert to 5NF)
+
+**Supplier_Product Table**  
+**Supplier_Project Table**  
+**Product_Project Table**
+
+**Result:**
+* Data cannot be further decomposed without losing information.
+* The table is in 5NF.
+
+---
+
+## Summary of Normal Forms
+
+* **1NF:** Atomic values only
+* **2NF:** No partial dependency
+* **3NF:** No transitive dependency
+* **BCNF:** Every determinant is a superkey
+* **4NF:** No multi-valued dependency
+* **5NF:** No join dependency
