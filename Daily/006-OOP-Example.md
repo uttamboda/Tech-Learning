@@ -1,4 +1,4 @@
-# Vehicle Rental System in Java
+# 1 Vehicle Rental System in Java
 
 ```java
 class Vehicle {
@@ -71,7 +71,7 @@ Bike Rent: 1500
 ```
 
 
-# Bank Account System in Java
+# 2 Bank Account System in Java
 
 This example demonstrates **OOP concepts**: inheritance, encapsulation, method overriding, and polymorphism.  
 It models a simple banking system with `BankAccount`, `SavingsAccount`, and `CurrentAccount`.
